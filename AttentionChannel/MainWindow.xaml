@@ -1,0 +1,7 @@
+﻿<Window x:Class="AttentionChannel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="537.739" Width="822.701">
+    <Grid Name="root">
+    </Grid>
+</Window>
