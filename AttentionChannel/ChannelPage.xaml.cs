@@ -104,6 +104,7 @@ namespace AttentionChannel
             pageIndex = new PageIndex((int)pageCount);
             pageIndex.DataContext = this;
             pageIndex.HorizontalAlignment = HorizontalAlignment.Right;
+            pageIndex.VerticalAlignment = VerticalAlignment.Bottom;
             this.rootGrid.Children.Add(pageIndex);
             Grid.SetColumn(pageIndex, 1);
             Grid.SetRow(pageIndex, 2);
@@ -121,7 +122,7 @@ namespace AttentionChannel
         {
             CurrentIndex -= 1;
             this.CurrentChannelList = GetDataContextByIndex(CurrentIndex);
-            pageIndex.SetSelecteItem(CurrentIndex);
+            pageIndex.SetSelecteIndex(CurrentIndex);
         }
         /// <summary>
         /// 下一页
@@ -132,7 +133,7 @@ namespace AttentionChannel
         {
             CurrentIndex += 1;
             this.CurrentChannelList = GetDataContextByIndex(CurrentIndex);
-            pageIndex.SetSelecteItem(CurrentIndex);
+            pageIndex.SetSelecteIndex(CurrentIndex);
 
         }
         /// <summary>

@@ -48,9 +48,9 @@ namespace AttentionChannel
                 this.Children.Add(ellipse);
                 ellipses.Add(ellipse);
             }
-            SetSelecteItem(0);
+            SetSelecteIndex(0);
         }
-        public void SetSelecteItem(int index)
+        public void SetSelecteIndex(int index)
         {
            
             if (index < 0 || index >= ellipses.Count)

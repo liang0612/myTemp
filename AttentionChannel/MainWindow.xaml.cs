@@ -29,7 +29,7 @@ namespace AttentionChannel
             {
                 ChannelModel model = new ChannelModel();
                 model.SerialNumber = i;
-                model.Name = "湖南卫视" + i;
+                model.Name = "湖南都市生活频道" + i;
                 channeles.Add(model);
             }
 
