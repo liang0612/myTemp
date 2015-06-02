@@ -67,7 +67,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AttentionChannelPage.cs" />
     <Compile Include="ChannelPage.xaml.cs">
       <DependentUpon>ChannelPage.xaml</DependentUpon>
     </Compile>
@@ -119,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btnBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btnBack1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

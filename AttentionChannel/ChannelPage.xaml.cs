@@ -59,7 +59,7 @@ namespace AttentionChannel
             {
                 if (value >= 0 && value <= pageCount)
                     currentIndex = value;
-                Refresh("CurrentIndex");
+                SendPropertyChangedEvent("CurrentIndex");
             }
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace AttentionChannel
             set
             {
                 currentChannelList = value;
-                Refresh("CurrentChannelList");
+                SendPropertyChangedEvent("CurrentChannelList");
             }
         }
         #endregion
@@ -98,7 +98,9 @@ namespace AttentionChannel
             CurrentChannelList = GetDataContextByIndex(CurrentIndex);
             InitilzePage();
         }
-
+        /// <summary>
+        /// 初始化分页索引
+        /// </summary>
         private void InitilzePage()
         {
             pageIndex = new PageIndex((int)pageCount);
@@ -107,8 +109,18 @@ namespace AttentionChannel
             pageIndex.VerticalAlignment = VerticalAlignment.Bottom;
             this.rootGrid.Children.Add(pageIndex);
             Grid.SetColumn(pageIndex, 1);
-            Grid.SetRow(pageIndex, 2);
+            Grid.SetRow(pageIndex, 3);
             pageIndex.CreateEllipse((int)pageCount);
+        }
+
+        /// <summary>
+        /// 发送属性改变事件
+        /// </summary>
+        /// <param name="name">改变的属性名称</param>
+        private void SendPropertyChangedEvent(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
         #endregion
 
@@ -162,13 +174,25 @@ namespace AttentionChannel
 
             this.CurrentChannelList = GetDataContextByIndex(CurrentIndex);
         }
+        /// <summary>
+        /// 属性改变通知事件
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// 取消按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AttentionButoonClick(object sender, RoutedEventArgs e)
+        {
+            //取消的频道列表
+            List<ChannelModel> channel = this.channeles.Where(n => n.IsCancelAttention == false).ToList();
+        }
         #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void Refresh(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
+
+
+
+
     }
 }

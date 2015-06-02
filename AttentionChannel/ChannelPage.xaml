@@ -21,7 +21,7 @@
                     </StackPanel>
                 </Grid>
             </Border>
-           
+
         </DataTemplate>
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="BorderThickness" Value="0.5"/>
@@ -47,9 +47,38 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="borderBack" Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="borderBack">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Images/btnBack1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Grid.Resources>
     <Grid Name="rootGrid" >
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="350"/>
             <RowDefinition Height="30"/>
@@ -60,21 +89,25 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <CheckBox Content="全选" Click="cbxAllSelectClick"  Name="cbxAllSelect" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+        <Grid Grid.Column="1">
+            <Rectangle Width="3" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Fill="#f09f5d"/>
+            <TextBlock Text="已关注的频道" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0"/>
+        </Grid>
+        <CheckBox Content="   全选" Grid.Row="1" FontSize="16" Click="cbxAllSelectClick"  Name="cbxAllSelect" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
                   Margin="5,2" BorderBrush="{StaticResource CheckBoxBoderColor}" Foreground="#a09e9d"/>
-        <Rectangle Height="3" Fill="#eae7e5" Grid.Column="1" VerticalAlignment="Bottom"/>
+        <Rectangle Height="3" Fill="#eae7e5" Grid.Column="1" VerticalAlignment="Bottom" Grid.Row="1"/>
         <ItemsControl Width="580" Margin="20,0" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding CurrentChannelList}" ItemTemplate="{StaticResource ChannelTemplate}"
-            Grid.Column="1" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            Grid.Column="1" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Image Source="Images/Left.png" Width="13" Height="20" Name="btnPreviousPage" MouseLeftButtonUp="PreviousPageClick" Grid.Row="1"/>
-        <Image Source="Images/right.png" Width="13" Height="20" Name="btnNextPage" MouseLeftButtonUp="NextPageClick" Grid.Column="2" Grid.Row="1"/>
-        <Rectangle Height="3" Fill="#eae7e5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" />
-        <Button Name="btnAttention" Content="取消关注" Width="117" Height="37" Grid.Column="1" Foreground="White" FontSize="21" Grid.Row="3">
+        <Image Source="Images/Left.png" Width="13" Height="20" Name="btnPreviousPage" MouseLeftButtonUp="PreviousPageClick" Grid.Row="2"/>
+        <Image Source="Images/right.png" Width="13" Height="20" Name="btnNextPage" MouseLeftButtonUp="NextPageClick" Grid.Column="2" Grid.Row="2"/>
+        <Rectangle Height="3" Fill="#eae7e5" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" />
+        <Button Name="btnAttention" Click="AttentionButoonClick" Content="取消关注" Width="117" Height="37" Grid.Column="1" Foreground="White" FontSize="21" Grid.Row="4">
             <Button.Background>
                 <ImageBrush ImageSource="Images/btnBack.png"/>
             </Button.Background>
